@@ -16,7 +16,7 @@ export class FirebaseService {
   getHero() {
     this.http.get<Hero>('https://warn-them.firebaseio.com/hero.json')
       .subscribe(hero => {
-        console.log(hero)
+        console.log(hero);
       });
   }
 }
