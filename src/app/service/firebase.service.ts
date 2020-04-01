@@ -1,9 +1,10 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MatSnackBar} from '@angular/material';
-import {HeroCreatedDialogComponent} from '../util/hero.created.dialog.component';
+import {SnackDialogComponent} from '../util/snack.dialog.component';
 
 export interface Hero {
+  id?: string;
   name: string;
   age: number;
 }
@@ -25,12 +26,19 @@ export class FirebaseService {
   createHero(hero: Hero) {
     this.http.post('https://warn-them.firebaseio.com/hero.json', hero)
       .subscribe(() => {},
-        error => console.log('Vytvoření postavy se nepodařilo.'),
-        () => {this.toast.openFromComponent(HeroCreatedDialogComponent, {duration: 3000});
-      });
+        error => { this.involveDialog('Hrdinu se nepodařilo vytvořit', true); },
+        () => { this.involveDialog('Hrdina vytvořen', false); });
   }
 
   deleteHeroes() {
-    this.http.delete('https://warn-them.firebaseio.com/hero.json').subscribe(value => console.log('DELETED'));
+    this.http.delete('https://warn-them.firebaseio.com/hero.json')
+      .subscribe(() => {},
+        (error => { this.involveDialog('Záznamy se nepodařilo smazat', true); }),
+        () => { this.involveDialog('Záznamy smazány', false); }
+        );
+  }
+
+  involveDialog(text: string, isError: boolean) {
+    this.toast.openFromComponent(SnackDialogComponent, {duration: 1500, data: {error: isError, textData: text}});
   }
 }

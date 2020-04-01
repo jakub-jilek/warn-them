@@ -9,12 +9,12 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
-import {HeroCreatedDialogComponent} from './util/hero.created.dialog.component';
+import {SnackDialogComponent} from './util/snack.dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    HeroCreatedDialogComponent
+    SnackDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -26,6 +26,6 @@ import {HeroCreatedDialogComponent} from './util/hero.created.dialog.component';
   ],
   providers: [],
   bootstrap: [AppComponent],
-  entryComponents: [HeroCreatedDialogComponent]
+  entryComponents: [SnackDialogComponent]
 })
 export class AppModule { }

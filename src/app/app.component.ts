@@ -15,7 +15,6 @@ export class AppComponent implements OnInit {
   constructor(private firebaseService: FirebaseService) {}
 
   ngOnInit() {
-    this.firebaseService.getHero();
-    this.firebaseService.deleteHeroes();
+    this.firebaseService.createHero(this.hero);
   }
 }
