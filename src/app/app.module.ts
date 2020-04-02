@@ -11,11 +11,24 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {SnackDialogComponent} from './util/snack.dialog.component';
 import {MatCardModule} from '@angular/material';
+import {RouterModule, Routes} from '@angular/router';
+import {NewHeroFormComponent} from './hero/hero-form/new-hero-form.component';
+import {MenuComponent} from './menu/menu.component';
+
+const appRoutes: Routes = [
+  { path: '', component: MenuComponent },
+  { path: 'new-hero-form', component: NewHeroFormComponent },
+  // { path: '**', component: PageNotFoundComponent }
+];
+
+
 
 @NgModule({
   declarations: [
     AppComponent,
-    SnackDialogComponent
+    SnackDialogComponent,
+    NewHeroFormComponent,
+    MenuComponent
   ],
     imports: [
         BrowserModule,
@@ -24,7 +37,8 @@ import {MatCardModule} from '@angular/material';
         BrowserAnimationsModule,
         MatButtonModule,
         MatSnackBarModule,
-        MatCardModule
+        MatCardModule,
+        RouterModule.forRoot(appRoutes)
     ],
   providers: [],
   bootstrap: [AppComponent],
