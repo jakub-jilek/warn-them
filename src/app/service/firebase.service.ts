@@ -20,8 +20,12 @@ export class FirebaseService {
     return this.http.get<Hero>('https://warn-them.firebaseio.com/hero.json');
   }
 
-  getHeroById() {
-
+  getHeroById(id: string) {
+    return this.http.get<Hero>('https://warn-them.firebaseio.com/hero/' + id + '.json')
+      .subscribe(() => {},
+        (error => { this.involveDialog('Hrdina načten', true); }),
+        () => { this.involveDialog('Hrdinu se nepodařilo načíst', false); }
+      );
   }
 
   createHero(hero: Hero) {
@@ -32,7 +36,8 @@ export class FirebaseService {
   }
 
   deleteHeroById(id: string) {
-    this.http.delete('https://warn-them.firebaseio.com/hero/' + id + '.json').subscribe(() => {},
+    this.http.delete('https://warn-them.firebaseio.com/hero/' + id + '.json')
+      .subscribe(() => {},
       (error => { this.involveDialog('Hrdinu se nepodařilo smazat', true); }),
       () => { this.involveDialog('Hrdina smazán', false); }
       );

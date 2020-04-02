@@ -10,20 +10,22 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 import {SnackDialogComponent} from './util/snack.dialog.component';
+import {MatCardModule} from '@angular/material';
 
 @NgModule({
   declarations: [
     AppComponent,
     SnackDialogComponent
   ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    HttpClientModule,
-    BrowserAnimationsModule,
-    MatButtonModule,
-    MatSnackBarModule
-  ],
+    imports: [
+        BrowserModule,
+        AppRoutingModule,
+        HttpClientModule,
+        BrowserAnimationsModule,
+        MatButtonModule,
+        MatSnackBarModule,
+        MatCardModule
+    ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [SnackDialogComponent]
