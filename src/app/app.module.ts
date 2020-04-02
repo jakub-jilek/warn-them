@@ -8,12 +8,14 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 import {MatButtonModule} from '@angular/material/button';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
+import {MatInputModule} from '@angular/material/input';
 
 import {SnackDialogComponent} from './util/snack.dialog.component';
 import {MatCardModule} from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {NewHeroFormComponent} from './hero/hero-form/new-hero-form.component';
 import {MenuComponent} from './menu/menu.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: '', component: MenuComponent },
@@ -30,16 +32,18 @@ const appRoutes: Routes = [
     NewHeroFormComponent,
     MenuComponent
   ],
-    imports: [
-        BrowserModule,
-        AppRoutingModule,
-        HttpClientModule,
-        BrowserAnimationsModule,
-        MatButtonModule,
-        MatSnackBarModule,
-        MatCardModule,
-        RouterModule.forRoot(appRoutes)
-    ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    HttpClientModule,
+    BrowserAnimationsModule,
+    MatButtonModule,
+    MatSnackBarModule,
+    MatCardModule,
+    RouterModule.forRoot(appRoutes),
+    ReactiveFormsModule,
+    MatInputModule
+  ],
   providers: [],
   bootstrap: [AppComponent],
   entryComponents: [SnackDialogComponent]
