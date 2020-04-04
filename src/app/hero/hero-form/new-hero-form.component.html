@@ -1,11 +1,26 @@
 <form [formGroup]="formGroup">
-  <mat-form-field>
-    <mat-label>Name</mat-label>
-    <input matInput formControlName="name">
-  </mat-form-field>
-  <br>
-  <mat-form-field>
-    <mat-label>Age</mat-label>
-    <input matInput formControlName="age">
-  </mat-form-field>
+  <h2>Vytvoř hrdinu</h2>
+  <div class="cardInner">
+    <div [style.grid-area]="'side'">
+      <mat-form-field>
+        <mat-label>Jméno</mat-label>
+        <input matInput formControlName="name">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role" disableOptionCentering>
+          <mat-option *ngFor="let role of roles" [value]="role.value">
+            {{ role.type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div [style.grid-area]="'content'">
+      <img *ngIf="formGroup.controls.role.value == 1" src="assets/images/warrior.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img *ngIf="formGroup.controls.role.value == 2" src="assets/images/wizard.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img *ngIf="formGroup.controls.role.value == 3" src="assets/images/trickster.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <p *ngIf="formGroup.controls.name.value && formGroup.controls.role.value != 0">{{ formGroup.controls.name.value }}</p>
+    </div>
+  </div>
 </form>

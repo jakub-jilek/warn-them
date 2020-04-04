@@ -2,12 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {MatSnackBar} from '@angular/material';
 import {SnackDialogComponent} from '../util/snack.dialog.component';
-
-export interface Hero {
-  id?: string;
-  name: string;
-  age: number;
-}
+import {Hero} from '../hero/hero';
 
 @Injectable({
   providedIn: 'root'

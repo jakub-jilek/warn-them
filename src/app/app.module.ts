@@ -11,7 +11,7 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import {MatInputModule} from '@angular/material/input';
 
 import {SnackDialogComponent} from './util/snack.dialog.component';
-import {MatCardModule} from '@angular/material';
+import {MatCardModule, MatGridListModule, MatSelectModule} from '@angular/material';
 import {RouterModule, Routes} from '@angular/router';
 import {NewHeroFormComponent} from './hero/hero-form/new-hero-form.component';
 import {MenuComponent} from './menu/menu.component';
@@ -42,7 +42,9 @@ const appRoutes: Routes = [
     MatCardModule,
     RouterModule.forRoot(appRoutes),
     ReactiveFormsModule,
-    MatInputModule
+    MatInputModule,
+    MatSelectModule,
+    MatGridListModule
   ],
   providers: [],
   bootstrap: [AppComponent],
