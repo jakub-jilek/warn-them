@@ -1,9 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
+import {Hero} from '../hero';
 
 export interface HeroRoles {
   type: string;
   value: number;
+  hero: Hero;
 }
 
 @Component({
@@ -13,14 +15,14 @@ export interface HeroRoles {
 })
 export class NewHeroFormComponent implements OnInit {
 
-  roles: HeroRoles[] = [
-    {type: 'Nic', value: 0},
-    {type: 'Válečník', value: 1},
-    {type: 'Kouzelník', value: 2},
-    {type: 'Kejklíř', value: 3}
-  ];
-
   formGroup: FormGroup;
+
+  roles: HeroRoles[] = [
+    {type: 'Nic', value: 0, hero: {name: '', role: '', life: 0}},
+    {type: 'Válečník', value: 1,  hero: {name: this.nameH, role: this.roleH, life: 300}},
+    {type: 'Kouzelník', value: 2,  hero: {name: this.nameH, role: this.roleH, life: 150}},
+    {type: 'Kejklíř', value: 3,  hero: {name: this.nameH, role: this.roleH, life: 200}}
+  ];
 
   constructor(private fb: FormBuilder) { }
 
@@ -29,6 +31,18 @@ export class NewHeroFormComponent implements OnInit {
       name: '',
       role: ''
     });
+  }
+
+   get controls() {
+    return this.formGroup ? this.formGroup.controls : null;
+  }
+
+  get nameH() {
+    return this.controls ? this.controls.name.value : '';
+  }
+
+  get roleH() {
+    return this.controls ? this.controls.role.value : '';
   }
 
 }
