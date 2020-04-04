@@ -14,6 +14,7 @@ body {
 
 .mat-card-menu {
   background-color: rgb(245, 245, 245);
+  min-height: 400px;
 }
 
 .mat-card-content {

@@ -10,17 +10,20 @@
       <mat-form-field>
         <mat-label>Role</mat-label>
         <mat-select formControlName="role" disableOptionCentering>
-          <mat-option *ngFor="let role of roles" [value]="role.value">
+          <mat-option *ngFor="let role of roles" [value]="role.value" (onSelectionChange)="roleChanged(role, $event)">
             {{ role.type }}
           </mat-option>
         </mat-select>
       </mat-form-field>
     </div>
     <div [style.grid-area]="'content'">
-      <img *ngIf="formGroup.controls.role.value == 1" src="assets/images/warrior.jpg" style="height: 140px; width: 190px;" alt="photo">
-      <img *ngIf="formGroup.controls.role.value == 2" src="assets/images/wizard.jpg" style="height: 140px; width: 190px;" alt="photo">
-      <img *ngIf="formGroup.controls.role.value == 3" src="assets/images/trickster.jpg" style="height: 140px; width: 190px;" alt="photo">
-      <p *ngIf="formGroup.controls.name.value && formGroup.controls.role.value != 0">{{ formGroup.controls.name.value }}</p>
+      <img *ngIf="roleH == 1" src="{{assets}}warrior.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img *ngIf="roleH == 2" src="{{assets}}wizard.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img *ngIf="roleH == 3" src="{{assets}}trickster.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <p *ngIf="nameH">{{ controls.name.value }}</p>
+      <p *ngIf="lifeH">{{ controls.fullLife.value }} HP</p>
+      <p *ngIf="minStrengthH && maxStrengthH">{{ controls.minStrength.value }} - {{ controls.maxStrength.value }}</p>
+      <p *ngIf="defenseH">{{ controls.defense.value }}</p>
     </div>
   </div>
 </form>
