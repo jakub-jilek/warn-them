@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Trickster, Warrior, Wizard} from '../heroes';
+import {FirebaseService} from '../../service/firebase.service';
 
 export interface HeroRoles {
   type: string;
@@ -24,7 +25,7 @@ export class NewHeroFormComponent implements OnInit {
     {type: 'Kejklíř', value: 3}
   ];
 
-  constructor(private fb: FormBuilder) { }
+  constructor(private fb: FormBuilder, private firebase: FirebaseService) { }
 
   ngOnInit() {
     this.formGroup = this.fb.group({
@@ -45,25 +46,25 @@ export class NewHeroFormComponent implements OnInit {
     }
     switch (role.value) {
       case 0: {
-        this.setValue(null);
+        this.setValues(null);
         break;
       }
       case 1: {
-        this.setValue(Warrior);
+        this.setValues(Warrior);
         break;
       }
       case 2: {
-        this.setValue(Wizard);
+        this.setValues(Wizard);
         break;
       }
       case 3: {
-        this.setValue(Trickster);
+        this.setValues(Trickster);
         break;
       }
     }
   }
 
-  setValue(hero: any) {
+  setValues(hero: any) {
     if (!hero) {
       this.formGroup.reset();
       return;
@@ -72,6 +73,17 @@ export class NewHeroFormComponent implements OnInit {
     this.controls.minStrength.setValue(hero.minStrength);
     this.controls.maxStrength.setValue(hero.maxStrength);
     this.controls.defense.setValue(hero.defense);
+  }
+
+  saveHero() {
+    this.firebase.createHero({
+      name: this.nameH,
+      role: this.roleH,
+      fullLife: this.lifeH,
+      actualLife: this.lifeH,
+      minStrength: this.minStrengthH,
+      maxStrength: this.maxStrengthH,
+      defense: this.defenseH});
   }
 
   get controls() {

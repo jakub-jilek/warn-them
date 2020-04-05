@@ -9,14 +9,16 @@ import {Hero} from '../hero/hero';
 })
 export class FirebaseService {
 
+  private FIREBASE_URL = 'https://warn-them.firebaseio.com/';
+
   constructor(private http: HttpClient, private toast: MatSnackBar) { }
 
   getHeroes() {
-    return this.http.get<Hero>('https://warn-them.firebaseio.com/hero.json');
+    return this.http.get<Hero>(this.FIREBASE_URL + 'hero.json');
   }
 
   getHeroById(id: string) {
-    return this.http.get<Hero>('https://warn-them.firebaseio.com/hero/' + id + '.json')
+    return this.http.get<Hero>(this.FIREBASE_URL + 'hero/' + id + '.json')
       .subscribe(() => {},
         (error => { this.involveDialog('Hrdina načten', true); }),
         () => { this.involveDialog('Hrdinu se nepodařilo načíst', false); }
@@ -24,14 +26,14 @@ export class FirebaseService {
   }
 
   createHero(hero: Hero) {
-    this.http.post('https://warn-them.firebaseio.com/hero.json', hero)
+    this.http.post(this.FIREBASE_URL + 'hero.json', hero)
       .subscribe(() => {},
         error => { this.involveDialog('Hrdinu se nepodařilo vytvořit', true); },
         () => { this.involveDialog('Hrdina vytvořen', false); });
   }
 
   deleteHeroById(id: string) {
-    this.http.delete('https://warn-them.firebaseio.com/hero/' + id + '.json')
+    this.http.delete(this.FIREBASE_URL + 'hero/' + id + '.json')
       .subscribe(() => {},
       (error => { this.involveDialog('Hrdinu se nepodařilo smazat', true); }),
       () => { this.involveDialog('Hrdina smazán', false); }
@@ -39,7 +41,7 @@ export class FirebaseService {
   }
 
   deleteHeroes() {
-    this.http.delete('https://warn-them.firebaseio.com/hero.json')
+    this.http.delete(this.FIREBASE_URL + 'hero.json')
       .subscribe(() => {},
         (error => { this.involveDialog('Záznamy se nepodařilo smazat', true); }),
         () => { this.involveDialog('Záznamy smazány', false); }

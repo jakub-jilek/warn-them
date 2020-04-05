@@ -20,10 +20,17 @@
       <img *ngIf="roleH == 1" src="{{assets}}warrior.jpg" style="height: 140px; width: 190px;" alt="photo">
       <img *ngIf="roleH == 2" src="{{assets}}wizard.jpg" style="height: 140px; width: 190px;" alt="photo">
       <img *ngIf="roleH == 3" src="{{assets}}trickster.jpg" style="height: 140px; width: 190px;" alt="photo">
-      <p *ngIf="nameH">{{ controls.name.value }}</p>
-      <p *ngIf="lifeH">{{ controls.fullLife.value }} HP</p>
-      <p *ngIf="minStrengthH && maxStrengthH">{{ controls.minStrength.value }} - {{ controls.maxStrength.value }}</p>
-      <p *ngIf="defenseH">{{ controls.defense.value }}</p>
+      <p>{{ controls.name.value }}</p>
+      <p *ngIf="lifeH"><b>Zdraví: </b>{{ controls.fullLife.value }} HP</p>
+      <p *ngIf="minStrengthH && maxStrengthH"><b>Síla: </b>{{ controls.minStrength.value }} - {{ controls.maxStrength.value }}</p>
+      <p *ngIf="defenseH"><b>Obrana: </b>{{ controls.defense.value }}</p>
     </div>
+    <button
+      type="button"
+      mat-raised-button
+      class="save-button"
+      (click)="saveHero()"
+      [disabled]="!nameH || !roleH">
+      Ulož</button>
   </div>
 </form>
