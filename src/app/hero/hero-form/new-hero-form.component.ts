@@ -89,7 +89,10 @@ export class NewHeroFormComponent implements OnInit {
   }
 
   saveHero() {
-    this.firebase.createHero(this.hero);
+    this.firebase.createHero(this.hero)
+      .subscribe((heroId) => {this.hero.id = Object.values(heroId).toString(); },
+        error => { this.firebase.involveDialog('Hrdinu se nepodařilo vytvořit', true); },
+        () => { this.firebase.involveDialog('Hrdina vytvořen', false); });
   }
 
   updateHero() {

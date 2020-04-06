@@ -26,10 +26,7 @@ export class FirebaseService {
   }
 
   createHero(hero: Hero) {
-    this.http.post(this.FIREBASE_URL + 'hero.json', hero)
-      .subscribe(() => {},
-        error => { this.involveDialog('Hrdinu se nepodařilo vytvořit', true); },
-        () => { this.involveDialog('Hrdina vytvořen', false); });
+    return this.http.post(this.FIREBASE_URL + 'hero.json', hero);
   }
 
   updateHero(hero: Hero) {
