@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup} from '@angular/forms';
 import {Trickster, Warrior, Wizard} from '../heroes';
 import {FirebaseService} from '../../service/firebase.service';
+import {Hero} from '../hero';
 
 export interface HeroRoles {
   type: string;
@@ -18,6 +19,17 @@ export class NewHeroFormComponent implements OnInit {
   formGroup: FormGroup;
   assets = 'assets/images/';
 
+  hero: Hero = {
+    id: '',
+    name: '',
+    role: null,
+    fullLife: null,
+    actualLife: null,
+    minStrength: null,
+    maxStrength: null,
+    defense: null
+  };
+
   roles: HeroRoles[] = [
     {type: 'Nic', value: 0},
     {type: 'Válečník', value: 1},
@@ -31,11 +43,6 @@ export class NewHeroFormComponent implements OnInit {
     this.formGroup = this.fb.group({
       name: '',
       role: '',
-      fullLife: '',
-      actualLife: '',
-      minStrength: '',
-      maxStrength: '',
-      defense: ''
      });
   }
 
@@ -46,44 +53,47 @@ export class NewHeroFormComponent implements OnInit {
     }
     switch (role.value) {
       case 0: {
-        this.setValues(null);
+        this.setValues(null, null);
         break;
       }
       case 1: {
-        this.setValues(Warrior);
+        this.setValues(Warrior, 1);
         break;
       }
       case 2: {
-        this.setValues(Wizard);
+        this.setValues(Wizard, 2);
         break;
       }
       case 3: {
-        this.setValues(Trickster);
+        this.setValues(Trickster, 3);
         break;
       }
     }
   }
 
-  setValues(hero: any) {
-    if (!hero) {
+  setValues(role: any, roleValue: number) {
+    if (!role) {
       this.formGroup.reset();
       return;
     }
-    this.controls.fullLife.setValue(hero.fullLife);
-    this.controls.minStrength.setValue(hero.minStrength);
-    this.controls.maxStrength.setValue(hero.maxStrength);
-    this.controls.defense.setValue(hero.defense);
+    this.hero.role = roleValue;
+    this.hero.fullLife = role.fullLife;
+    this.hero.actualLife = role.actualLife;
+    this.hero.minStrength = role.minStrength;
+    this.hero.maxStrength = role.maxStrength;
+    this.hero.defense = role.defense;
+  }
+
+  nameChange() {
+    this.hero.name = this.formGroup.controls.name.value;
   }
 
   saveHero() {
-    this.firebase.createHero({
-      name: this.nameH,
-      role: this.roleH,
-      fullLife: this.lifeH,
-      actualLife: this.lifeH,
-      minStrength: this.minStrengthH,
-      maxStrength: this.maxStrengthH,
-      defense: this.defenseH});
+    this.firebase.createHero(this.hero);
+  }
+
+  updateHero() {
+    this.firebase.updateHero(this.hero);
   }
 
   get controls() {
@@ -99,18 +109,18 @@ export class NewHeroFormComponent implements OnInit {
   }
 
   get lifeH() {
-    return this.controls ? this.controls.fullLife.value : '';
+    return this.hero.fullLife;
   }
 
   get minStrengthH() {
-    return this.controls ? this.controls.minStrength.value : '';
+    return this.hero.minStrength;
   }
 
   get maxStrengthH() {
-    return this.controls ? this.controls.maxStrength.value : '';
+    return this.hero.maxStrength;
   }
 
   get defenseH() {
-    return this.controls ? this.controls.defense.value : '';
+    return this.hero.defense;
   }
 }

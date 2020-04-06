@@ -32,6 +32,11 @@ export class FirebaseService {
         () => { this.involveDialog('Hrdina vytvořen', false); });
   }
 
+  updateHero(hero: Hero) {
+    this.http.put(this.FIREBASE_URL + 'hero/' + hero.id, hero)
+      .subscribe(value => console.log(value));
+  }
+
   deleteHeroById(id: string) {
     this.http.delete(this.FIREBASE_URL + 'hero/' + id + '.json')
       .subscribe(() => {},

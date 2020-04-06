@@ -1,7 +1,7 @@
 export interface Hero {
   id?: string;
   name: string;
-  role: string;
+  role: number;
   fullLife: number;
   actualLife: number;
   minStrength: number;
