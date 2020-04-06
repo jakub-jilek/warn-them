@@ -16,10 +16,12 @@ import {RouterModule, Routes} from '@angular/router';
 import {NewHeroFormComponent} from './hero/hero-form/new-hero-form.component';
 import {MenuComponent} from './menu/menu.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import {GameWindowComponent} from './game/game-window/game-window.component';
 
 const appRoutes: Routes = [
   { path: '', component: MenuComponent },
   { path: 'new-hero-form', component: NewHeroFormComponent },
+  { path: 'game-window', component: GameWindowComponent },
   // { path: '**', component: PageNotFoundComponent }
 ];
 
@@ -30,7 +32,8 @@ const appRoutes: Routes = [
     AppComponent,
     SnackDialogComponent,
     NewHeroFormComponent,
-    MenuComponent
+    MenuComponent,
+    GameWindowComponent
   ],
   imports: [
     BrowserModule,

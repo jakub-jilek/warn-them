@@ -30,7 +30,7 @@ export class FirebaseService {
   }
 
   updateHero(hero: Hero) {
-    this.http.put(this.FIREBASE_URL + 'hero/' + hero.id, hero)
+    this.http.put(this.FIREBASE_URL + 'hero/' + hero.id + '.json', hero)
       .subscribe(value => console.log(value));
   }
 

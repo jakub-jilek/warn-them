@@ -16,4 +16,8 @@ export class MenuComponent implements OnInit {
   newGame() {
     this.router.navigate(['/new-hero-form']);
   }
+
+  endGame() {
+    console.log('Close this tab!');
+  }
 }

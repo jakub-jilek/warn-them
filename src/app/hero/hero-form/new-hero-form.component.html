@@ -25,18 +25,21 @@
       <p *ngIf="minStrengthH && maxStrengthH"><b>Síla: </b>{{ hero.minStrength }} - {{ hero.maxStrength }}</p>
       <p *ngIf="defenseH"><b>Obrana: </b>{{ hero.defense }}</p>
     </div>
-    <button
-      type="button"
-      mat-raised-button
-      class="save-button"
-      (click)="saveHero()"
-      [disabled]="!nameH || !roleH">
-      Ulož</button>
-    <button
-      type="button"
-      mat-raised-button
-      class=""
-      (click)="updateHero()">
-      Ulož</button>
+    <div style="display: block">
+      <button
+        type="button"
+        mat-raised-button
+        class="save-button"
+        (click)="createHero()"
+        [disabled]="!nameH || !roleH">
+        Ulož</button>
+      <button
+        type="button"
+        mat-raised-button
+        color="warn"
+        class="back-button"
+        (click)="navigateBack()">
+        Zpět</button>
+    </div>
   </div>
 </form>

@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup} from '@angular/forms';
 import {Trickster, Warrior, Wizard} from '../heroes';
 import {FirebaseService} from '../../service/firebase.service';
 import {Hero} from '../hero';
+import {Router} from '@angular/router';
 
 export interface HeroRoles {
   type: string;
@@ -37,7 +38,7 @@ export class NewHeroFormComponent implements OnInit {
     {type: 'Kejklíř', value: 3}
   ];
 
-  constructor(private fb: FormBuilder, private firebase: FirebaseService) { }
+  constructor(private fb: FormBuilder, private firebase: FirebaseService, private router: Router) { }
 
   ngOnInit() {
     this.formGroup = this.fb.group({
@@ -88,15 +89,18 @@ export class NewHeroFormComponent implements OnInit {
     this.hero.name = this.formGroup.controls.name.value;
   }
 
-  saveHero() {
+  createHero() {
     this.firebase.createHero(this.hero)
-      .subscribe((heroId) => {this.hero.id = Object.values(heroId).toString(); },
+      .subscribe((heroId) => {
+        this.hero.id = Object.values(heroId).toString();
+        this.router.navigate(['game-window', {name: this.hero.name, role: this.hero.role}]);
+        },
         error => { this.firebase.involveDialog('Hrdinu se nepodařilo vytvořit', true); },
         () => { this.firebase.involveDialog('Hrdina vytvořen', false); });
   }
 
-  updateHero() {
-    this.firebase.updateHero(this.hero);
+  navigateBack() {
+    this.router.navigate(['/']);
   }
 
   get controls() {
