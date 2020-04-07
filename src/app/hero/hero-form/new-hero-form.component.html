@@ -1,6 +1,6 @@
 <form [formGroup]="formGroup">
   <h2>Vytvoř hrdinu</h2>
-  <div class="cardInner">
+  <div class="card-inner">
     <div [style.grid-area]="'side'">
       <mat-form-field>
         <mat-label>Jméno</mat-label>
@@ -38,7 +38,7 @@
         mat-raised-button
         color="warn"
         class="back-button"
-        (click)="navigateBack()">
+        [routerLink]="['/']">
         Zpět</button>
     </div>
   </div>
