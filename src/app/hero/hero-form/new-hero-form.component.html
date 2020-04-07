@@ -17,9 +17,9 @@
       </mat-form-field>
     </div>
     <div [style.grid-area]="'content'">
-      <img *ngIf="roleH == 1" src="{{assets}}warrior.jpg" style="height: 140px; width: 190px;" alt="photo">
-      <img *ngIf="roleH == 2" src="{{assets}}wizard.jpg" style="height: 140px; width: 190px;" alt="photo">
-      <img *ngIf="roleH == 3" src="{{assets}}trickster.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img class="image-display" *ngIf="roleH == 1" src="{{assets}}warrior.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img class="image-display" *ngIf="roleH == 2" src="{{assets}}wizard.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img class="image-display" *ngIf="roleH == 3" src="{{assets}}trickster.jpg" style="height: 140px; width: 190px;" alt="photo">
       <p>{{ controls.name.value }}</p>
       <p *ngIf="lifeH"><b>Zdraví: </b>{{ hero.fullLife }} HP</p>
       <p *ngIf="minStrengthH && maxStrengthH"><b>Síla: </b>{{ hero.minStrength }} - {{ hero.maxStrength }}</p>

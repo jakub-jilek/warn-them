@@ -12,9 +12,34 @@ body {
   margin: auto;
 }
 
-.mat-card-menu {
-  background-color: rgb(245, 245, 245);
-  min-height: 400px;
+@media only screen and (max-width: 800px) {
+  .mat-card-menu {
+    background-color: rgb(245, 245, 245);
+    min-height: 500px;
+  }
+
+  .cardInner {
+    display: block;
+    grid-template-areas: "side content";
+    grid-template-rows: auto auto auto;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  .mat-card-menu {
+    background-color: rgb(245, 245, 245);
+    min-height: 450px;
+  }
+
+  .cardInner {
+    display: grid;
+    grid-template-areas: "side content";
+    grid-template-rows: auto auto auto;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+  }
 }
 
 .mat-card-content {
@@ -36,14 +61,6 @@ body {
   padding: 15px 32px;
   text-decoration: none;
   font-size: 16px;
-}
-
-.cardInner {
-  display: grid;
-  grid-template-areas: "side content";
-  grid-template-rows: auto auto auto;
-  grid-row-gap: 16px;
-  grid-column-gap: 16px;
 }
 
 .mat-card-menu .save-button {
