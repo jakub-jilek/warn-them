@@ -1,0 +1,45 @@
+<form [formGroup]="formGroup">
+  <h2>Vytvoř hrdinu</h2>
+  <div class="card-inner">
+    <div [style.grid-area]="'side'">
+      <mat-form-field>
+        <mat-label>Jméno</mat-label>
+        <input matInput formControlName="name" (change)="nameChange()">
+      </mat-form-field>
+      <br>
+      <mat-form-field>
+        <mat-label>Role</mat-label>
+        <mat-select formControlName="role" disableOptionCentering>
+          <mat-option *ngFor="let role of roles" [value]="role.value" (onSelectionChange)="roleChanged(role, $event)">
+            {{ role.type }}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div [style.grid-area]="'content'">
+      <img class="image-display" *ngIf="roleH == 1" src="{{assets}}warrior.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img class="image-display" *ngIf="roleH == 2" src="{{assets}}wizard.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <img class="image-display" *ngIf="roleH == 3" src="{{assets}}trickster.jpg" style="height: 140px; width: 190px;" alt="photo">
+      <p>{{ controls.name.value }}</p>
+      <p *ngIf="lifeH"><b>Zdraví: </b>{{ hero.fullLife }} HP</p>
+      <p *ngIf="minStrengthH && maxStrengthH"><b>Síla: </b>{{ hero.minStrength }} - {{ hero.maxStrength }}</p>
+      <p *ngIf="defenseH"><b>Obrana: </b>{{ hero.defense }}</p>
+    </div>
+    <div style="display: block">
+      <button
+        type="button"
+        mat-raised-button
+        class="save-button"
+        (click)="createHero()"
+        [disabled]="!nameH || !roleH">
+        Ulož</button>
+      <button
+        type="button"
+        mat-raised-button
+        color="warn"
+        class="back-button"
+        [routerLink]="['/']">
+        Zpět</button>
+    </div>
+  </div>
+</form>

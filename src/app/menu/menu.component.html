@@ -1,0 +1,17 @@
+<mat-card-content class="mat-card-content">
+  <div class="menu-btn-container">
+    <button mat-raised-button type="button" class="menu-btn" [routerLink]="['/new-hero-form']">Nová hra</button>
+  </div>
+  <div class="menu-btn-container">
+    <button mat-raised-button type="button" class="menu-btn">Načíst hru</button>
+  </div>
+  <div class="menu-btn-container">
+    <button mat-raised-button type="button" class="menu-btn">Nastavení</button>
+  </div>
+  <div class="menu-btn-container">
+    <button mat-raised-button type="button" class="menu-btn">Skóre</button>
+  </div>
+  <div>
+    <button mat-raised-button type="button" class="menu-btn" (click)="endGame()">Konec</button>
+  </div>
+</mat-card-content>

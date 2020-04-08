@@ -1,1 +1,78 @@
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body {
+  margin: 0;
+  padding: 40px;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+.container {
+  width: 60%;
+  margin: auto;
+}
+
+@media only screen and (max-width: 800px) {
+  .mat-card-menu {
+    background-color: rgb(245, 245, 245);
+    min-height: 500px;
+  }
+
+  .card-inner {
+    display: block;
+    grid-template-areas: "side content";
+    grid-template-rows: auto auto auto;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+  }
+}
+
+@media only screen and (min-width: 801px) {
+  .mat-card-menu {
+    background-color: rgb(245, 245, 245);
+    min-height: 450px;
+  }
+
+  .card-inner {
+    display: grid;
+    grid-template-areas: "side content";
+    grid-template-rows: auto auto auto;
+    grid-row-gap: 16px;
+    grid-column-gap: 16px;
+  }
+}
+
+.mat-card-content {
+  text-align: center;
+  margin-top: 30px;
+}
+
+.menu-btn-container {
+  margin-bottom: 8px;
+}
+
+.menu-btn {
+  width: 150px;
+}
+
+.mat-card-menu button {
+  background-color: #2B9CFF;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.mat-card-menu .save-button {
+  position: absolute;
+  right: 10px;
+  bottom: 10px;
+}
+
+.mat-card-menu .back-button {
+  position: absolute;
+  right: 120px;
+  bottom: 10px;
+}
+
