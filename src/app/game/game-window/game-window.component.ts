@@ -1,4 +1,5 @@
 import {Component, OnInit} from '@angular/core';
+import {HeroService} from 'src/app/hero/hero.service';
 
 @Component({
   selector: 'game-window',
@@ -6,9 +7,10 @@ import {Component, OnInit} from '@angular/core';
 })
 export class GameWindowComponent implements OnInit {
 
-  constructor() { }
+  constructor(private heroService: HeroService) { }
 
   ngOnInit() {
+    console.log('GAME WINDOW ', this.heroService.hero);
   }
 
 }
