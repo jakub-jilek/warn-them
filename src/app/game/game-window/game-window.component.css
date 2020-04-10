@@ -1,0 +1,16 @@
+.main-window {
+  border: 1px solid black;
+  background-color: lightblue;
+  position: absolute;
+  height: 65%;
+  width: 70%;
+}
+
+.hero-window {
+  border: 1px solid black;
+  background-color: seashell;
+  position: absolute;
+  bottom: 15px;
+  height: 25%;
+  width: 70%;
+}
