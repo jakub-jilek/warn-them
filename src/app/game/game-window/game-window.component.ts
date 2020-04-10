@@ -7,6 +7,7 @@ import {HeroService} from 'src/app/hero/hero.service';
   styleUrls: ['game-window.component.css']
 })
 export class GameWindowComponent implements OnInit {
+  title = 'TITULEK';
 
   constructor(private heroService: HeroService) { }
 
